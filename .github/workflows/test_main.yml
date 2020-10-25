@@ -1,0 +1,21 @@
+name: pytest-gpu-torch
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Update Conda environment with "environment.yml"
+      uses: matthewrmshin/conda-action@v1
+      with:
+        args: conda env update -f ./environment.yml
+    - name: Run "pytest" with the Conda environment
+      uses: matthewrmshin/conda-action@v1
+      with:
+        args: pytest
