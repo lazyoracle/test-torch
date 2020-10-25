@@ -1,0 +1,20 @@
+name: torch
+channels:
+  - pytorch
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - cudatoolkit=10.2
+  - ipython=7.13.0
+  - jupyter=1.0.0
+  - jupyterlab=2.1.5
+  - notebook=6.0
+  - numpy=1.18.1
+  - pandas=1.0.3
+  - pip=20.0.2
+  - pytest
+  - python=3.8
+  - pytorch=1.6
+  - scipy=1.4.1
+  - torchvision=0.7
