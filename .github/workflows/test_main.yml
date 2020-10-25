@@ -5,17 +5,20 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
 jobs:
-  build-and-run:
-    runs-on: ubuntu-latest
+  build-linux:
+    runs-on: ubuntu-20.04
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Update Conda environment with "environment.yml"
-      uses: matthewrmshin/conda-action@v1
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
       with:
-        args: conda env update -f ./environment.yml
-    - name: Run "pytest" with the Conda environment
-      uses: matthewrmshin/conda-action@v1
-      with:
-        args: pytest
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        $CONDA/bin/conda env update --file environment.yml --name base
+    - name: Test with pytest
+      run: |
+        $CONDA/bin/pytest
