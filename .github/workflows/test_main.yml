@@ -21,8 +21,6 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         $CONDA/bin/conda env update --file environment.yml --name base
-    - name: Install coverage plugin
-      	run: $CONDA/bin/conda install pytest-cov
     - name: Test with pytest
       run: |
         $CONDA/bin/pytest src/ -s -v -m "not needs_gpu" --cov=src/ --cov-report=xml
