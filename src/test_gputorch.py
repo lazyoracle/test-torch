@@ -1,5 +1,7 @@
+import pytest
 import gputorch
 
+@pytest.mark.needs_gpu
 def test_cuda_check():
     assert gputorch.cuda_check() == True
 
