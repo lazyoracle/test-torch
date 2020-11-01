@@ -8,7 +8,9 @@ on:
 jobs:
   build-linux:
     runs-on: ubuntu-20.04
-
+    env:
+      OS: 'ubuntu-20.04'
+      PYTHON: '3.8'
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
@@ -19,6 +21,15 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         $CONDA/bin/conda env update --file environment.yml --name base
+	pip install pytest-cov
     - name: Test with pytest
       run: |
-        $CONDA/bin/pytest
+        $CONDA/bin/pytest src/ -s -v -m "not needs_gpu" --cov=src/ --cov-report=xml
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.xml
+        env_vars: OS,PYTHON
+        name: codecov-torch-test
+        fail_ci_if_error: false
+        verbose: true
