@@ -5,17 +5,11 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - cudatoolkit=10.2
-  - ipython=7.13.0
-  - jupyter=1.0.0
-  - jupyterlab=2.1.5
-  - notebook=6.0
-  - numpy=1.18.1
-  - pandas=1.0.3
-  - pip=20.0.2
-  - pytest
-  - pytest-cov
+  - cudatoolkit=11.1
+  - pip=21.0.1
+  - pytest=6.1.1
+  - pytest-cov=2.10.1
   - python=3.8
-  - pytorch=1.6
-  - scipy=1.4.1
-  - torchvision=0.7
+  - pytorch=1.8.0
+  - requests=2.25.1
+  - torchvision=0.9.0
