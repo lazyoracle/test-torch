@@ -1,9 +1,6 @@
 name: torch
 channels:
-  - pytorch
-  - anaconda
   - conda-forge
-  - defaults
 dependencies:
   - cudatoolkit=11.1
   - pip=21.0.1
