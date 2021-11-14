@@ -11,4 +11,4 @@ dependencies:
   - python=3.9
   - pytorch=1.10
   - requests
-  - torchvision=0.11
+  - torchvision
