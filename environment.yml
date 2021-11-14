@@ -6,9 +6,9 @@ channels:
   - defaults
 dependencies:
   - cudatoolkit=11.2
-  - pip=21.3
-  - pytest=6.2
+  - pip
+  - pytest
   - python=3.9
   - pytorch=1.10
-  - requests=2.26
-  - torchvision=0.10
+  - requests
+  - torchvision=0.11
