@@ -23,7 +23,7 @@ jobs:
         $CONDA/bin/conda env update --file environment.yml --name base
     - name: Test with pytest
       run: |
-        $CONDA/bin/pytest src/ -s -v -m "not needs_gpu" --cov=src/ --cov-report=xml
+        $CONDA/bin/pytest src/ -m "not needs_gpu"
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
