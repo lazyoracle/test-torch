@@ -20,22 +20,16 @@ jobs:
         shell: bash -l {0}
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: Install dependencies
+    - name : Remove CUDA if Mac
+      if: startsWith(matrix.os, 'macos')
       run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        $CONDA/bin/conda env update --file environment.yml --name base
-    - name: Test with pytest
-      run: |
-        $CONDA/bin/pytest src/ -m "not needs_gpu"
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+        sed '/cuda/d' environment.yml | tee environment.yml
+    - uses: conda-incubator/setup-miniconda@v2
       with:
-        file: ./coverage.xml
-        env_vars: OS,PYTHON
-        name: codecov-torch-test
-        fail_ci_if_error: false
-        verbose: true
+        activate-environment: torch
+        environment-file: environment.yml
+        python-version: ${{ matrix.python-version }}
+        auto-activate-base: false
+    - name: Test pytorch with pytest
+      run: |
+        pytest src -m "not needs_gpu"
