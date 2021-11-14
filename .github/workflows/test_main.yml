@@ -13,8 +13,11 @@ jobs:
         os: [ubuntu-20.04, ubuntu-18.04, windows-latest, macos-latest]
         python-version: [3.9]
     env:
-      OS: 'ubuntu-20.04'
-      PYTHON: '3.8'
+      OS: ${{ matrix.os }}
+      PYTHON: ${{ matrix.python-version }}
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
